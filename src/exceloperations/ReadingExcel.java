@@ -1,3 +1,5 @@
+//Lembrar que as dependências JAR da API devem ser adicionadas em Libraries -> Classpath, ou o programa ñao encontrará as classes.
+
 package exceloperations;
 
 import java.io.FileInputStream;
