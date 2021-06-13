@@ -5,15 +5,31 @@ package exceloperations;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadingExcel {
+import entities.ExcelFile;
 
-	public static void main(String[] args) throws IOException {
-			
+public class ReadingExcel { 
+
+	public static void main(String[] args) {
 		
-		String excelFilePath = "C:\\temp\\workspace eclipse\\POIApache\\datafiles\\how.xlsx";
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Digite o caminho do arquivo: ");
+		String path = sc.nextLine();
+		
+		sc.close();
+		
+	ExcelFile excelfile = new ExcelFile(path);
+	
+	
+		
+		String excelFilePath = (excelfile.getPath());
 		try {
 			FileInputStream inputstream = new FileInputStream(excelFilePath); // Inicializa leitor de arquivos genérico - fs
 			XSSFWorkbook workbook=new XSSFWorkbook(inputstream);; // Inicializa objeto workbook (Planilha) da classe Herdada
@@ -65,5 +81,6 @@ public class ReadingExcel {
 		}
 
 	}
-
 }
+
+
