@@ -57,19 +57,15 @@ public class ExcelFile {
 					switch (cell.getCellType()) { // Verifica qual o tipo de conteúdo da célula para ler de acordo
 
 					case STRING:// Se for string, chamada o método para ler e sai do switch
-						// System.out.print(cell.getStringCellValue());
 						ReadingExcel.listCells2.add(cell);
 						break;
 					case NUMERIC:
-						// System.out.print(cell.getNumericCellValue());
 						ReadingExcel.listCells2.add(cell);
 						break;
 					case BOOLEAN:
-						// System.out.print(cell.getBooleanCellValue());
 						ReadingExcel.listCells2.add(cell);
 						break;
 					case BLANK:
-						// System.out.print("Empty cell!");
 						break;
 					default:
 						System.out.print("Unformatted data!");
@@ -77,12 +73,10 @@ public class ExcelFile {
 
 					}
 					
-					// System.out.print(" | "); // Separador para formatação sendo executado dentro
-					// do for
+					
 
 				}
-				// System.out.println(); // Separador para formatação sendo executado dentro do
-				// for das linhas
+				
 				
 			}
 			inputstream.close();

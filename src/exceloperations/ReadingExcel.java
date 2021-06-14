@@ -16,7 +16,7 @@ public static List<XSSFCell> listCells2 = new ArrayList<>();
 	
 	public static void main(String[] args) {
 		
-		
+		try {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite o caminho do primeiro arquivo: ");
 		String path = sc.nextLine();
@@ -28,7 +28,11 @@ public static List<XSSFCell> listCells2 = new ArrayList<>();
 		excelfile2.ReadFromFile();
 		sc.close();
 		System.out.println(excelfile2); // O método toString funcionou para o objeto excelFile mas não funciona para listas.
-				
+		System.out.println(listCells2);
+		}
+		catch (IllegalStateException e) {
+			System.out.println("Verificar planilha: Há dados não string!");
+		}
 	}
 	public void addList (XSSFCell cell) {
 		  listCells2.add(cell);
