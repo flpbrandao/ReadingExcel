@@ -4,14 +4,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import exceloperations.ReadingExcel;
+
 public class ExcelFile {
 
-	private String path;
+ 	private String path;
 
 	public ExcelFile(String path) {
 		this.path = path;
@@ -40,7 +43,7 @@ public class ExcelFile {
 															// partir do Workbook
 
 			int numRows = sheet.getLastRowNum(); // Método da classe XSSFSheet que pega número de linhas da planilha
-			int numCols = sheet.getRow(1).getLastCellNum(); // Método da classe XSSFSheet que pega número de colunas
+			int numCols = sheet.getRow(0).getLastCellNum(); // Método da classe XSSFSheet que pega número de colunas
 															// naquela linha
 
 			for (int r = 0; r <= numRows; r++) { // For para percorrer as linhas da planilha
@@ -50,32 +53,43 @@ public class ExcelFile {
 				for (int c = 0; c < numCols; c++) { // Para cada linha, será percorrido o numero de colunas obtido
 													// anteriormente
 
-					XSSFCell cell = row.getCell(c); // Em cada coluna, será obtida a célula
+					XSSFCell cell = row.getCell(c); // Em cada linha dentro coluna, será obtida a célula
 
 					switch (cell.getCellType()) { // Verifica qual o tipo de conteúdo da célula para ler de acordo
 
-					case STRING:
-						System.out.print(cell.getStringCellValue());
-						break; // Se for string, chamada o método para ler e sai do switch
+					case STRING:// Se for string, chamada o método para ler e sai do switch
+						// System.out.print(cell.getStringCellValue());
+						ReadingExcel.listCells2.add(cell);
+						break;
 					case NUMERIC:
-						System.out.print(cell.getNumericCellValue());
+						// System.out.print(cell.getNumericCellValue());
+						ReadingExcel.listCells2.add(cell);
 						break;
 					case BOOLEAN:
-						System.out.print(cell.getBooleanCellValue());
+						// System.out.print(cell.getBooleanCellValue());
+						ReadingExcel.listCells2.add(cell);
 						break;
 					case BLANK:
-						System.out.print("Empty cell!");
+						// System.out.print("Empty cell!");
 						break;
 					default:
+						System.out.print("Unformatted data!");
 						break;
-					
+
 					}
-					System.out.print(" | "); // Separador para formatação sendo executado dentro do for
+					
+					// System.out.print(" | "); // Separador para formatação sendo executado dentro
+					// do for
+
 				}
-				System.out.println(); // Separador para formatação sendo executado dentro do for das linhas
+				// System.out.println(); // Separador para formatação sendo executado dentro do
+				// for das linhas
+				
 			}
 			inputstream.close();
 			workbook.close();
+			
+
 		}
 
 		catch (FileNotFoundException e) {
@@ -83,8 +97,14 @@ public class ExcelFile {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println("Erro na estrutura da planilha.");
 		}
 
 	}
 
-}
+	
+					
+	}
+
+

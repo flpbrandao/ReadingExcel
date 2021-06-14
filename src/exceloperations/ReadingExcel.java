@@ -2,23 +2,46 @@
 
 package exceloperations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
 
 import entities.ExcelFile;
 
 public class ReadingExcel {
-
+	
+public static List<XSSFCell> listCells2 = new ArrayList<>();
+	
 	public static void main(String[] args) {
-
+		
+		new ReadingExcel();
+		
+			}
+	public  ReadingExcel() {
+		
+		
 		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Digite o caminho do arquivo: ");
+		System.out.println("Digite o caminho do primeiro arquivo: ");
 		String path = sc.nextLine();
-
-		sc.close();
-
 		ExcelFile excelfile = new ExcelFile(path);
 		excelfile.ReadFromFile();
-
+		System.out.println("Digite o caminho do segundo arquivo: ");
+		path = sc.nextLine();
+		ExcelFile excelfile2 = new ExcelFile(path);
+		excelfile2.ReadFromFile();
+		sc.close();
+		System.out.println(listCells2);
+				
 	}
+	public void addList (XSSFCell cell) {
+		  listCells2.add(cell);
+		
+	}
+	
 }
+
+	
+	
+
