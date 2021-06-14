@@ -16,11 +16,6 @@ public static List<XSSFCell> listCells2 = new ArrayList<>();
 	
 	public static void main(String[] args) {
 		
-		new ReadingExcel();
-		
-			}
-	public  ReadingExcel() {
-		
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite o caminho do primeiro arquivo: ");
