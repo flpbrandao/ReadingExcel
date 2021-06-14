@@ -57,13 +57,15 @@ public class ExcelFile {
 					switch (cell.getCellType()) { // Verifica qual o tipo de conteúdo da célula para ler de acordo
 
 					case STRING:// Se for string, chamada o método para ler e sai do switch
-						ReadingExcel.listCells2.add(cell);
+						String strCell = cell.getStringCellValue();
+						
+						ReadingExcel.listCells2.add(strCell);
 						break;
 					case NUMERIC:
-						ReadingExcel.listCells2.add(cell);
+						System.out.print("Unformatted data! This is a " + cell.getCellType());
 						break;
 					case BOOLEAN:
-						ReadingExcel.listCells2.add(cell);
+						System.out.print("Unformatted data! This is a " + cell.getCellType());
 						break;
 					case BLANK:
 						break;
@@ -72,16 +74,11 @@ public class ExcelFile {
 						break;
 
 					}
-					
-					
-
 				}
-				
-				
 			}
 			inputstream.close();
 			workbook.close();
-			
+		
 
 		}
 
@@ -96,13 +93,7 @@ public class ExcelFile {
 
 
 	}
-	public String toString () {
-		StringBuilder sb = new StringBuilder();
-		for (XSSFCell cell : ReadingExcel.listCells2) {
-			sb.append(cell.getStringCellValue() + " - ");
-			
-		}
-		return sb.toString();
+	
 
-	}
+	
 }
