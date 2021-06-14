@@ -27,7 +27,7 @@ public static List<XSSFCell> listCells2 = new ArrayList<>();
 		ExcelFile excelfile2 = new ExcelFile(path);
 		excelfile2.ReadFromFile();
 		sc.close();
-		System.out.println(listCells2);
+		System.out.println(excelfile2); // O método toString funcionou para o objeto excelFile mas não funciona para listas.
 				
 	}
 	public void addList (XSSFCell cell) {
