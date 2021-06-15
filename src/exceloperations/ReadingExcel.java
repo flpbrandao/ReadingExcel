@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-
 import entities.ExcelFile;
 
 public class ReadingExcel {
@@ -19,32 +17,21 @@ public class ReadingExcel {
 		try {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Digite o caminho do primeiro arquivo: ");
-			String path = sc.nextLine();
-			ExcelFile excelfile = new ExcelFile(path);
-			excelfile.ReadFromFile();
+			String path1 = sc.nextLine();
 			System.out.println("Digite o caminho do segundo arquivo: ");
-			path = sc.nextLine();
-			ExcelFile excelfile2 = new ExcelFile(path);
-			excelfile2.ReadFromFile();
+			String path2 = sc.nextLine();
 			sc.close();
-			// System.out.println(excelfile2); // O método toString funcionou para o objeto
-			// excelFile mas não funciona para listas.
+			ExcelFile excelfile = new ExcelFile();
+			excelfile.ReadFromFile(path1);
+			excelfile.ReadFromFile(path2);
+			excelfile.compareLists();
 			System.out.println(listCells2);
-			System.out.println(listCells2.indexOf("Brazil"));
-		
+			// System.out.println(excelfile2); // O método toString funcionou para o objeto
+			// excelFile mas não funciona para listas
+			
 		} catch (IllegalStateException e) {
 			System.out.println("Verificar planilha: Há dados não string!");
 		}
 	}
 
-	public void addList(String strCell) {
-		listCells2.add(strCell);
-
-	}
-	public void compareLists (XSSFCell listCells2) {
-		
-			
-		}
-	}
-
-
+}

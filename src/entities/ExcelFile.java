@@ -3,6 +3,8 @@ package entities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -13,23 +15,13 @@ import exceloperations.ReadingExcel;
 
 public class ExcelFile {
 
-	private String path;
+	public ExcelFile() {
 
-	public ExcelFile(String path) {
-		this.path = path;
 	}
 
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public void ReadFromFile() {
+	public void ReadFromFile(String path) {
 		try {
-			String excelFilePath = this.getPath();
+			String excelFilePath = path;
 			FileInputStream inputstream = new FileInputStream(excelFilePath); // Inicializa leitor de arquivos genérico
 																				// - fs
 			XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
@@ -58,31 +50,20 @@ public class ExcelFile {
 
 					case STRING:// Se for string, chamada o método para ler e sai do switch
 						String strCell = cell.getStringCellValue();
-						
 						ReadingExcel.listCells2.add(strCell);
 						break;
-					case NUMERIC:
-						System.out.print("Unformatted data! This is a " + cell.getCellType());
-						break;
-					case BOOLEAN:
-						System.out.print("Unformatted data! This is a " + cell.getCellType());
-						break;
-					case BLANK:
-						break;
 					default:
-						System.out.print("Unformatted data!");
+						System.out.print("Unformatted data! Verify sheet.");
 						break;
 
 					}
 				}
 			}
+
 			inputstream.close();
 			workbook.close();
-		
 
-		}
-
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo não encontrado!");
 
 		} catch (IOException e) {
@@ -91,9 +72,17 @@ public class ExcelFile {
 			System.out.println("Erro na estrutura da planilha.");
 		}
 
+	}
+
+	public void compareLists() {
+		Set<String> s = new HashSet<>();
+		for (String strCell : ReadingExcel.listCells2) {
+			if (s.add(strCell) == false) {
+				System.out.println("Entry " + strCell + " present on first list");
+			} else {
+				System.out.println("Entry " + strCell + " not present. Adding to hashset");
+			}
+		}
 
 	}
-	
-
-	
 }
